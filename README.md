@@ -1,13 +1,13 @@
 # lesson_19_2
-РІСЃС‘ РІ develop
+всё в develop
 
-РґР»СЏ РІС‹РІРѕРґР° РІ json РёСЃРїРѕР»СЊР·РѕРІР°Р» РґР»СЏ windows
+для вывода в json использовал для windows
 
 chcp 65001
 
 python manage.py dumpdata catalog --output=catalog/catalog_data.json --indent 4
 
-Р§С‚РѕР±С‹ Р·Р°РїСѓСЃС‚РёС‚СЊ РєРѕРјР°РЅРґСѓ Р·Р°РіСЂСѓР·РєРё РґР°РЅРЅС‹С…, РёСЃРїРѕР»СЊР·СѓР№С‚Рµ РєРѕРјР°РЅРґСѓ РІ С‚РµСЂРјРёРЅР°Р»Рµ:
+Чтобы запустить команду загрузки данных, используйте команду в терминале:
 python manage.py load_data
 
-Р”Р»СЏ Р·Р°РїСѓСЃРєР° РїСЂРёР»РѕР¶РµРЅРёСЏ: python.exe manage.py runserver
+Для запуска приложения: python.exe manage.py runserver
