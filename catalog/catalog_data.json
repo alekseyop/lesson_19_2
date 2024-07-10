@@ -1,0 +1,83 @@
+[
+{
+    "model": "catalog.category",
+    "pk": 1,
+    "fields": {
+        "name": "телевизор",
+        "description": "Устройство вывода изображения"
+    }
+},
+{
+    "model": "catalog.category",
+    "pk": 2,
+    "fields": {
+        "name": "Чайник",
+        "description": "Сосуд для жидкости"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 1,
+    "fields": {
+        "name": "Samsunng 50",
+        "description": "диагональ 50 дюймов",
+        "image": "products/017_Desktop_Wallpapers__HD_Part_571.jpg",
+        "category": 1,
+        "price": "50000.00",
+        "created_at": "2024-07-10T13:23:33.872Z",
+        "updated_at": "2024-07-10T13:23:33.872Z"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 2,
+    "fields": {
+        "name": "Sony 65",
+        "description": "телевизор с размером экрана 65 дюймов",
+        "image": "",
+        "category": 1,
+        "price": "65000.00",
+        "created_at": "2024-07-10T13:39:50.961Z",
+        "updated_at": "2024-07-10T13:39:50.961Z"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 3,
+    "fields": {
+        "name": "Tefal 1L",
+        "description": "Чайник Tefal 1 литр",
+        "image": "",
+        "category": 2,
+        "price": "5000.00",
+        "created_at": "2024-07-10T17:45:37.656Z",
+        "updated_at": "2024-07-10T17:45:37.656Z"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 4,
+    "fields": {
+        "name": "NoName 1,5L",
+        "description": "дешёвый чайник 1,5 литра",
+        "image": "",
+        "category": 2,
+        "price": "1000.00",
+        "created_at": "2024-07-10T17:47:16.981Z",
+        "updated_at": "2024-07-10T17:47:16.981Z"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 7,
+    "fields": {
+        "name": "LG 35",
+        "description": "",
+        "image": "",
+        "category": 1,
+        "price": "25000.00",
+        "created_at": "2024-07-10T18:46:31.533Z",
+        "updated_at": "2024-07-10T18:46:31.533Z"
+    }
+}
+]
