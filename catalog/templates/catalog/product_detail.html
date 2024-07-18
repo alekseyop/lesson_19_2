@@ -18,6 +18,8 @@
                         <p class="card-text">Название: {{ item.name }}</p>
                         <p class="card-text">Описание: {{ item.description }}</p>
                         <p class="card-text">Цена: {{ item.price }}</p>
+                        <p class="card-text">Дата создания: {{ item.created_at | date:"j N Y" }}</p>
+                        <p class="card-text">Дата изменения: {{ item.updated_at | date:"j N Y" }}</p>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
                                 <a class="btn btn-primary" href="{% url 'catalog:home' %}" type="button">Назад</a>
