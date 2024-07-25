@@ -11,8 +11,8 @@
         {% endif %}
         <p>{{ blog.content }}</p>
         <p>Ссылка: {{ blog.slug }}</p>
-        <p>Создан в: {{ blog.created_at }}</p>
-        <p>Опубликовано: {{ blog.is_published }}</p>
+        <p>Создан: {{ blog.created_at }}</p>
+        <p>Опубликовано: {% if blog.is_published %}Да{% else %}Нет{% endif %} </p>
         <p>Просмотров: {{ blog.view_count }}</p>
         <a href="{% url 'blog:blog_update' blog.pk %}" class="btn btn-secondary">Редактировать</a>
         <a href="{% url 'blog:blog_delete' blog.pk %}" class="btn btn-danger">Удалить</a>

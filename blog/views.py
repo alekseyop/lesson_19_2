@@ -8,11 +8,15 @@ from pytils.translit import slugify
 from blog.models import Blog
 
 
-# Create your views here.
+class BlogListViewAll(ListView):
+    model = Blog
+
+
 class BlogListView(ListView):
     model = Blog
-    # def get_queryset(self):
-    #     return Blog.objects.filter(is_published=True)
+
+    def get_queryset(self):
+        return Blog.objects.filter(is_published=True)
 
 
 class BlogDetailView(DetailView):
@@ -42,6 +46,7 @@ class BlogCreateView(CreateView):
 class BlogUpdateView(UpdateView):
     model = Blog
     fields = ['title', 'content', 'preview_image', 'is_published']
+
     # success_url = reverse_lazy('blog:blog_list')
 
     def form_valid(self, form):
@@ -53,7 +58,8 @@ class BlogUpdateView(UpdateView):
         return super().form_valid(form)
 
     def get_success_url(self):
-        return reverse('blog:view_blog', args=[self.kwargs.get('pk')])
+        return reverse('blog:blog_detail', args=[self.kwargs.get('pk')])
+
 
 class BlogDeleteView(DeleteView):
     model = Blog
