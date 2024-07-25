@@ -1,0 +1,18 @@
+{% extends "catalog/base.html" %}
+
+{% block content %}
+<body>
+    <div class="container mt-5">
+        <h1>Посты</h1>
+        <a href="{% url 'blog:blog_create' %}" class="btn btn-primary mb-3">Создать новый пост</a>
+        <ul class="list-group">
+            {% for blog in object_list %}
+                <li class="list-group-item">
+                    <a href="{% url 'blog:blog_detail' blog.pk %}">{{ blog.title }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+
+{% endblock %}
