@@ -1,7 +1,7 @@
 # lesson_19_2
 всё в develop
 
-для вывода в json использовал для windows
+Для вывода в json использовал для windows
 
 chcp 65001
 
