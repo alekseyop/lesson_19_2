@@ -23,6 +23,7 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name="Цена за покупку")
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
     updated_at = models.DateTimeField(auto_now=True, verbose_name="Дата последнего изменения")
+
     # manufactured_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата производства продукта")
 
     def __str__(self):
@@ -33,3 +34,19 @@ class Product(models.Model):
         verbose_name_plural = 'Товары'  # наименование во множественном числе товара
         ordering = ['-created_at']  # сортировка по дате создания в порядке убывания (по возрастанию)
         # ordering = ['-updated_at']  # сортировка по дате последнего изменения в порядке убывания (по убыванию)
+
+
+class Version(models.Model):
+    product = models.ForeignKey(Product, related_name='versions', on_delete=models.CASCADE)
+    version_number = models.CharField(max_length=20)
+    version_name = models.CharField(max_length=255)
+    is_current = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"{self.product.name} - {self.version_name} ({self.version_number})"
+
+    class Meta:  # метаданные версии товара
+        verbose_name = 'Версия'  # наименование в единственном числе версии товара
+        verbose_name_plural = 'Версии'  # наименование во множественном числе версии товара
+
+

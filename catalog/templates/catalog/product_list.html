@@ -6,20 +6,35 @@
     <p class="lead">Skystore - это отличный магазин товаров с доставкой по всей стране, с надежным сервисом.</p>
 </div>
 {% load my_tags %}
+{% load custom_tags %}
 <div class="album py-5 bg-body-tertiary">
     <div class="container">
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
             {% for item in object_list%}
             <div class="col">
-                <div class="card shadow-sm">
+                <div class="card shadow-sm p-4">
                     <img src="{{ item.image | media_filter }}" width="50%" height="50%">
                     <div class="card-body">
                         <p class="card-text">{{ item.name }} - {{ item.category }}</p>
                         <p class="card-text">{{ item.description|truncatechars:100 }}</p>
                         <p class="card-text">{{ item.price }}</p>
                         <div class="d-flex justify-content-between align-items-center">
+
+                            {% with active_version=active_versions|get_item:item.id %}
+
+                            {% if active_version %}
+                            <p class="card-text">Текущая версия: {{ active_version.version_name }},
+                                Номер верси: {{ active_version.version_number }}</p>
+                            {% else %}
+                            <p>Нет активной версии</p>
+                            {% endif %}
+
+                            {% endwith %}
+
+
                             <div class="btn-group">
-                                <a class="btn btn-primary" href="{% url 'catalog:product_detail' item.pk %}" type="button">Посмотреть</a>
+                                <a class="btn btn-primary" href="{% url 'catalog:product_detail' item.pk %}"
+                                   type="button">Посмотреть</a>
 
                             </div>
 
