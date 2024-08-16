@@ -13,6 +13,7 @@
         <a class="p-2 btn btn-outline-primary" href="{% url 'users:logout' %}">Выход</a>
         {% else %}
         <a class="p-2 btn btn-outline-primary" href="{% url 'users:login' %}">Вход</a>
+        <a class="p-2 btn btn-outline-primary" href="{% url 'users:password_reset' %}">Востановить пароль</a>
         <a class="p-2 btn btn-outline-primary" href="{% url 'users:register' %}">Регистрация</a>
         {% endif %}
         <a class="p-2 btn btn-outline-primary" href="{% url 'blog:blog_list'%}" role="button">Перейти в блог пост</a>

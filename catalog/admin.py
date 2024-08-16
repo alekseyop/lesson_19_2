@@ -1,12 +1,6 @@
 from django.contrib import admin
 
-from catalog.models import Product, Category, Version
-
-
-# @admin.register(Version)
-# class VersionInline(admin.TabularInline):
-#     model = Version
-#     extra = 1
+from catalog.models import Product, Category
 
 
 @admin.register(Product)
@@ -22,8 +16,3 @@ class CategoryAdmin(admin.ModelAdmin):
     list_display = ['id', 'name']
     list_filter = ['name', ]
     search_fields = ['name', ]
-
-
-
-
-# admin.site.register(Product, ProductAdmin)

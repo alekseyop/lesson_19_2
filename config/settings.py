@@ -51,7 +51,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
@@ -65,7 +64,6 @@ DATABASES = {
         'PASSWORD': '362362',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -85,19 +83,11 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-# LANGUAGE_CODE = 'en-us'
-#
-# TIME_ZONE = 'UTC'
-#
-# USE_I18N = True
-#
-# USE_TZ = True
 LANGUAGE_CODE = 'ru-ru'
 TIME_ZONE = 'Europe/Moscow'
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
@@ -128,6 +118,3 @@ EMAIL_USE_SSL = True
 
 SERVER_EMAIL = EMAIL_HOST_USER
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
-
-
-

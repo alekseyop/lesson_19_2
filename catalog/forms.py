@@ -22,7 +22,7 @@ class ProductForm(ModelForm):
         self.validate_prohibited_words(description, 'description')
         return description
 
-    def validate_prohibited_words(self, text, field_name):
+    def validate_prohibited_words(self, text):
         for word in PROHIBITED_WORDS:
             if re.search(r'\b' + re.escape(word) + r'\b', text, re.IGNORECASE):
                 raise forms.ValidationError(f"Поле содержит запрещенное слово: {word}")
