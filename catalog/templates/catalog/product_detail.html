@@ -21,12 +21,12 @@
                         <p class="card-text">Дата создания: {{ object.created_at | date:"j N Y" }}</p>
                         <p class="card-text">Дата изменения: {{ object.updated_at | date:"j N Y" }}</p>
                         <div class="justify-content-between">
-
-                                <a href="{% url 'catalog:product_update' object.pk %}"
-                                   class="btn btn-secondary">Редактировать</a>
-                                <a href="{% url 'catalog:product_delete' object.pk %}" class="btn btn-danger">Удалить</a>
-                                <a class="btn btn-primary" href="{% url 'catalog:home' %}" type="button">Назад</a>
-
+                            {% if user.is_authenticated %}
+                            <a href="{% url 'catalog:product_update' object.pk %}"
+                               class="btn btn-secondary">Редактировать</a>
+                            <a href="{% url 'catalog:product_delete' object.pk %}" class="btn btn-danger">Удалить</a>
+                            {% endif %}
+                            <a class="btn btn-primary" href="{% url 'catalog:home' %}" type="button">Назад</a>
 
 
                         </div>

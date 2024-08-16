@@ -1,5 +1,5 @@
-from django.contrib.auth.models import AbstractUser, User
-from users.models import User
+from django.contrib.auth.models import AbstractUser
+
 from django.db import models
 
 NULLABLE = {'null': True, 'blank': True}
@@ -14,7 +14,6 @@ class User(AbstractUser):
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
     token = models.CharField(max_length=100, **NULLABLE, verbose_name="Токен")
-
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
