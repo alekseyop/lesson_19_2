@@ -7,6 +7,23 @@ from catalog.models import Product, Version
 PROHIBITED_WORDS = ['казино', 'криптовалюта', 'крипта', 'биржа', 'дешево', 'бесплатно', 'обман', 'полиция', 'радар']
 
 
+class ProductModeratorForm(ModelForm):
+    class Meta:
+        model = Product
+        fields = ['description', 'category']
+
+
+    def clean_description(self):
+        description = self.cleaned_data.get('description')
+        self.validate_prohibited_words(description, 'description')
+        return description
+
+    def validate_prohibited_words(self, text):
+        for word in PROHIBITED_WORDS:
+            if re.search(r'\b' + re.escape(word) + r'\b', text, re.IGNORECASE):
+                raise forms.ValidationError(f"Поле содержит запрещенное слово: {word}")
+
+
 class ProductForm(ModelForm):
     class Meta:
         model = Product

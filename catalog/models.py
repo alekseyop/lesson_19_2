@@ -27,6 +27,7 @@ class Product(models.Model):
     updated_at = models.DateTimeField(auto_now=True, verbose_name="Дата последнего изменения")
 
     owner = models.ForeignKey(User, verbose_name="Владелец", **NULLABLE, on_delete=models.SET_NULL)
+    is_published = models.BooleanField(default=False) # флаг, показывающий является ли товар опубликованным
 
     # manufactured_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата производства продукта")
 
@@ -38,6 +39,11 @@ class Product(models.Model):
         verbose_name_plural = 'Товары'  # наименование во множественном числе товара
         ordering = ['-created_at']  # сортировка по дате создания в порядке убывания (по возрастанию)
         # ordering = ['-updated_at']  # сортировка по дате последнего изменения в порядке убывания (по убыванию)
+        permissions = [
+            ("can_unpublish_product", "Можно отменить публикацию продукта"),
+            ("can_edit_product_description", "Можно менять описание любого продукта"),
+            ("can_change_product_category", "Можно изменить категорию продукта"),
+        ]
 
 
 class Version(models.Model):

@@ -21,11 +21,13 @@
                         <p class="card-text">Дата создания: {{ object.created_at | date:"j N Y" }}</p>
                         <p class="card-text">Дата изменения: {{ object.updated_at | date:"j N Y" }}</p>
                         <div class="justify-content-between">
-                            {% if user.is_authenticated %}
+
+                            {% if perms.user.can_edit_product_description and perms.user.can_change_product_category or user == user.owner %}
                             <a href="{% url 'catalog:product_update' object.pk %}"
                                class="btn btn-secondary">Редактировать</a>
+                             {% endif %}
                             <a href="{% url 'catalog:product_delete' object.pk %}" class="btn btn-danger">Удалить</a>
-                            {% endif %}
+
                             <a class="btn btn-primary" href="{% url 'catalog:home' %}" type="button">Назад</a>
 
 
