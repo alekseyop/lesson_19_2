@@ -9,7 +9,7 @@ from django.views.generic import ListView, CreateView, DeleteView, UpdateView, D
 
 from catalog.forms import ProductForm, VersionForm, ProductModeratorForm
 from catalog.models import Product, Version, Category
-from catalog.services import get_product_from_cache
+from catalog.services import get_product_from_cache, get_category_from_cach
 
 
 class ProductCreateView(CreateView, LoginRequiredMixin):
@@ -125,8 +125,8 @@ class CategoryListView(ListView):
     template_name = 'catalog/category_list.html'
     context_object_name = 'categories'
 
-    # def get_queryset(self):
-    #     return get_category_from_cach()
+    def get_queryset(self):
+        return get_category_from_cach()
 
 
 class CategoryDetailView(ListView):
