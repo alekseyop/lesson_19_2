@@ -8,7 +8,7 @@ from django.views import View
 from django.views.generic import ListView, CreateView, DeleteView, UpdateView, DetailView
 
 from catalog.forms import ProductForm, VersionForm, ProductModeratorForm
-from catalog.models import Product, Version
+from catalog.models import Product, Version, Category
 from catalog.services import get_product_from_cache
 
 
@@ -119,3 +119,25 @@ class ContactsView(View):
 class ProductDeleteConfirm(DeleteView):
     model = Product
     success_url = reverse_lazy('catalog:home')
+
+
+class CategoryListView(ListView):
+    template_name = 'catalog/category_list.html'
+    context_object_name = 'categories'
+
+    # def get_queryset(self):
+    #     return get_category_from_cach()
+
+
+class CategoryDetailView(ListView):
+    template_name = 'catalog/category_detail.html'
+    context_object_name = 'products'
+
+    def get_queryset(self):
+        category_id = self.kwargs.get('pk')
+        return Product.objects.filter(category__id=category_id)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['category'] = Category.objects.get(pk=self.kwargs.get('pk'))
+        return context
