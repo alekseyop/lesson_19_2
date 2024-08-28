@@ -8,7 +8,8 @@ from django.views import View
 from django.views.generic import ListView, CreateView, DeleteView, UpdateView, DetailView
 
 from catalog.forms import ProductForm, VersionForm, ProductModeratorForm
-from catalog.models import Product, Version
+from catalog.models import Product, Version, Category
+from catalog.services import get_product_from_cache
 
 
 class ProductCreateView(CreateView, LoginRequiredMixin):
@@ -16,7 +17,6 @@ class ProductCreateView(CreateView, LoginRequiredMixin):
     form_class = ProductForm
     success_url = reverse_lazy('catalog:home')
 
-    # template_name = 'catalog/product_form.html'
     def form_valid(self, form):
         product = form.save()
         user = self.request.user
@@ -25,12 +25,15 @@ class ProductCreateView(CreateView, LoginRequiredMixin):
         return super().form_valid(form)
 
 
-class ProductListView(ListView):
+class ProductListView(ListView, LoginRequiredMixin):
     model = Product
     # form_class = ProductForm
     # success_url = reverse_lazy('catalog:home')
     template_name = 'product_list.html'
     context_object_name = 'products'
+
+    def get_queryset(self):
+        return get_product_from_cache()
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -93,10 +96,10 @@ class ProductUpdateView(LoginRequiredMixin, UpdateView):
         user = self.request.user
         if user == self.object.owner:
             return ProductForm
-        if user.has_perm('catalog.can_edit_product_description') and user.has_perm('catalog.can_change_product_category'):
+        if user.has_perm('catalog.can_edit_product_description') and user.has_perm(
+                'catalog.can_change_product_category'):
             return ProductModeratorForm
         raise PermissionDenied
-
 
 
 class ContactsView(View):
@@ -116,3 +119,25 @@ class ContactsView(View):
 class ProductDeleteConfirm(DeleteView):
     model = Product
     success_url = reverse_lazy('catalog:home')
+
+
+class CategoryListView(ListView):
+    template_name = 'catalog/category_list.html'
+    context_object_name = 'categories'
+
+    # def get_queryset(self):
+    #     return get_category_from_cach()
+
+
+class CategoryDetailView(ListView):
+    template_name = 'catalog/category_detail.html'
+    context_object_name = 'products'
+
+    def get_queryset(self):
+        category_id = self.kwargs.get('pk')
+        return Product.objects.filter(category__id=category_id)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['category'] = Category.objects.get(pk=self.kwargs.get('pk'))
+        return context
